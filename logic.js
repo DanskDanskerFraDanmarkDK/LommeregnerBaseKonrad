@@ -3,13 +3,13 @@ window.actions = {};
 actions.add = {};
 actions.add.types = [Number, Number, Number];
 actions.add.function = function(a, b, c){
-    return -1;
+    return a + b + c;
 }
 
 actions.add1 = {
     types: [Number, Number, Number],
     function: function(a, b, c){
-        return -1;
+        return a + b + c;
     }   
 }
 
@@ -17,8 +17,21 @@ actions.add1 = {
 actions.sortOnLength = {
     types: [String, String, String],
     function: function(a, b, c){
-        return "a aa aaa";
-    }    
+       
+        if(a.length < b.length)
+            if(b.length < c. length)
+                return (a + " " + b + " " + c)
+            else 
+                if(a.length < c.length)
+                    return (a + " " + c + " " + b)
+                else return (c + " " + a + " " + b)
+        else
+            if(a.length < c.length)
+            return(b + " " + a + " " + c)
+            else if(b.length < c.length)
+                return(b + " " + c + " " + a)
+                else return(c + " " + b + " " + a)
+    }
 }
 
 // returns the sum of the ages of the three persons
