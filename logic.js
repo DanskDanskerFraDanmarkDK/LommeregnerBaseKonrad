@@ -20,6 +20,9 @@ actions.sortOnLength = {
        
         if(a.length < b.length)
             if(b.length < c. length)
+                if(a==0)
+                    return (b + " " + c)
+                else
                 return (a + " " + b + " " + c)
             else 
                 if(a.length < c.length)
@@ -33,6 +36,20 @@ actions.sortOnLength = {
                 else return(c + " " + b + " " + a)
     }
 }
+
+testData.productVulnerability = [
+    { a: 1, b: 1, c: 1, expected: "Ikke Kritisk" },
+    { a: 2, b: 3, c: 4, expected: "Besværlig" },
+    { a: 5, b: 5, c: 5, expected: "Kritisk" }
+   ];
+   testData.vulnerability = [
+    {
+    a: {disruptive: 1, irreplacible: 1, damaging: 1},
+    b: {disruptive: 2, irreplacible: 3, damaging: 4},
+    c: {disruptive: 5, irreplacible: 5, damaging: 5},
+    expected: ["Ikke Kritisk", "Besværlig", "Kritisk"]
+    }
+   ]
 
 // returns the sum of the ages of the three persons
 actions.totalAge = {
@@ -49,6 +66,29 @@ actions.averageAge = {
         return ((alice.age + bob.age + cat.age)/3);
     }
 };
+
+// returns sårbarhed of a single product
+actions.productVulnerability = {
+    types: [Number, Number, Number],
+    function: function(disruptive, irreplacible, damaging){
+    if(disruptive * irreplacible * damaging < 10)
+        return "Ikke Kritisk";
+    if(disruptive * irreplacible * damaging >= 10 && disruptive * irreplacible * damaging <= 99)
+        return "Besværlig";
+    if(disruptive * irreplacible * damaging > 99)    
+        return "Kritisk";
+    }
+   }
+
+   // returns 'sårbarhed' of the three products in an array
+   // each product has properties disruptive, irreplacible, and damaging,
+   actions.vulnerability = {
+    types: [JSON.parse, JSON.parse, JSON.parse],
+    function: function(p1, p2, p3){
+   
+    return [ -1, -1, -1];
+    }
+   };
 
 window.runTest = function(actionName, actions, testData){
     var result = "";
